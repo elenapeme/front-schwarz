@@ -29,7 +29,11 @@
   
       <div v-show="isOpen" class="tab--content">
         <div class="tab--content--main" >
-            <div v-for="element in data.slice(0,2)" :key="element.id">
+            <div v-for="element in data.slice(0, 1)" :key="element.id">
+                <button class="tab--content--main--basket" @click="addToCart(element)">ADD TO BASKET</button>             
+                <img :src="element.image" alt="dummy-image">
+            </div>
+            <div v-for="element in data.slice(1, 2)" :key="element.id">
                 <img :src="element.image" alt="dummy-image">
             </div>
         </div>
@@ -43,11 +47,19 @@
 import Carousel from '../Carousel/Carousel.vue'
 import { ref } from 'vue'
 import { data } from '../../assets/data'
+import { Data } from '../../types/Data'
+import { useItemsStore } from '../../store/items'
 
 const isOpen = ref(false)
 
+const store = useItemsStore()
+
 const toggleAccordion = () => {
     isOpen.value = !isOpen.value;
+}
+
+const addToCart = (element: Data) => {
+    store.addItems(element)
 }
 </script>
 
@@ -92,6 +104,15 @@ $clouds: #ecf0f1;
         img {
             max-width: 100%;
             height: auto;
+        }
+
+        &--basket {
+            padding: 2vw;
+            position: absolute;
+            color: white;
+            background-color: red;
+            margin: 1em;
+            border-radius: 0;
         }
     }
   }

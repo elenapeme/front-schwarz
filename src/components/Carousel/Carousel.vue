@@ -57,7 +57,7 @@ const divs: any = ref([])
 
 const moveRight = () => {
     if ( divs.value.length >= position.value ) {
-        position.value += 6
+        position.value += 3
         console.log(divs.value.length)
         console.log(position.value)
         const indexDiv = divs.value.length < position.value ? divs.value.length -1 : position.value
@@ -68,7 +68,7 @@ const moveRight = () => {
 
 const moveLeft = () => {
     if ( position.value !== 0) {
-        position.value -= 6
+        position.value -= 3
         console.log(divs.value.length)
         console.log(position.value)
         const indexDiv = divs.value.length < position.value ? divs.value.length -1 : position.value

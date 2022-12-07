@@ -25,7 +25,7 @@
 
     &--logo {
         width: 5vw;
-        padding: 1vw;
+        padding: 0.5em;
         min-width: 50px;
     }
 
