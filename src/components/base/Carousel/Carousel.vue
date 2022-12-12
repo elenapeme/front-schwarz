@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Data } from '../../types/Data'
+import { Data } from '../../../types/Data'
 
 defineProps<{ data: Data[] }>()
 

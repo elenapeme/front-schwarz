@@ -1,23 +1,29 @@
 <template>
   <Header/>
-  <div >
-    <Accordion />
-    <Accordion />
-    <Accordion />
-    <Accordion />
-    <Accordion />
+  <div v-if="isMobile">
+    <MobileView />
   </div>
-  
+  <div v-else>
+    <DesktopView />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { useMobileDetection } from "vue3-mobile-detection"
+import { useItemsStore } from './store/items'
 
-import Header from './components/Header/Header.vue'
-import Accordion from './components/Accordion/Accordion.vue'
+import Header from './components/base/Header/Header.vue'
+import MobileView from './components/MobileView/MobileView.vue'
+import DesktopView from './components/DesktopView/DesktopView.vue'
 
-const { isMobile } = useMobileDetection()
-console.log(isMobile)
+import { useMedia } from './composables/useMedia'
+
+const store = useItemsStore()
+const isMobile = useMedia("(max-width: 600px)")
+
+
+if (localStorage.getItem("itemsCart")) {
+  store.updateCart()
+}
 
 </script>
 

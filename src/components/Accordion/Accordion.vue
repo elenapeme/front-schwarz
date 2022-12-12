@@ -28,51 +28,37 @@
       </div>
   
       <div v-show="isOpen" class="tab--content">
-        <div class="tab--content--main" >
-            <div v-for="element in data.slice(0, 1)" :key="element.id">
-                <button class="tab--content--main--basket" @click="addToCart(element)">ADD TO BASKET</button>             
-                <img :src="element.image" alt="dummy-image">
-            </div>
-            <div v-for="element in data.slice(1, 2)" :key="element.id">
-                <img :src="element.image" alt="dummy-image">
-            </div>
-        </div>
+        <AddToCartView/>
         <Carousel :data=data />
       </div>
-      
     </div>
 </template>
   
 <script lang="ts" setup>
-import Carousel from '../Carousel/Carousel.vue'
+import Carousel from '../base/Carousel/Carousel.vue'
+import AddToCartView from '../base/AddToCartView/AddToCartView.vue'
 import { ref } from 'vue'
 import { data } from '../../assets/data'
-import { Data } from '../../types/Data'
-import { useItemsStore } from '../../store/items'
 
 const isOpen = ref(false)
-
-const store = useItemsStore()
 
 const toggleAccordion = () => {
     isOpen.value = !isOpen.value;
 }
-
-const addToCart = (element: Data) => {
-    store.addItems(element)
-}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $midnight: #2c3e50;
 $clouds: #ecf0f1;
 
 .tab {
-  overflow: hidden;
-  display: flex;
+    overflow: hidden;
+    display: flex;
     background-color: rgb(210, 210, 210);
     padding: 1em;
     cursor: pointer;
+    justify-content: flex-start;
+    flex-direction: row;
 
     &:hover {
         background-color: white;
@@ -87,7 +73,8 @@ $clouds: #ecf0f1;
     
     }
     svg {
-        width: 1vw;
+        width: 3vw;
+        min-width: 10px;
         margin-right: 1em;
         fill: black;
     }
@@ -96,25 +83,6 @@ $clouds: #ecf0f1;
     color: $midnight;
     background: white;
     transition: all .35s;
-
-    &--main  {
-        display: flex;
-        justify-content: center;
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        &--basket {
-            padding: 2vw;
-            position: absolute;
-            color: white;
-            background-color: red;
-            margin: 1em;
-            border-radius: 0;
-        }
-    }
   }
   &-close {
     display: flex;

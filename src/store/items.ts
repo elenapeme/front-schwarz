@@ -10,9 +10,16 @@ export const useItemsStore = defineStore({
     state: (): ItemsState => ({
         items: []
     }),
+    getters: {
+        getTotalItems: (state) => state.items.length,
+        getItems: (state) => state.items
+    },
     actions: {
         addItems(item: Data) {
             this.items.push(item)
+        },
+        updateCart() {
+            this.items = JSON.parse(localStorage.getItem("itemsCart")!)
         }
     }
 })

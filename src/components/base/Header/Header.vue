@@ -1,13 +1,16 @@
 <template>
     <header className="header--container">
         <a href="https://vuejs.org/" target="_blank">
-            <img src="./../../assets/lidl_logo.svg" class="header--logo" alt="Lidl logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./../../assets/cart-outline.png" class="header--cart" alt="Shopping Cart" />
-        </a>
+            <img src="./../../../assets/lidl_logo.svg" class="header--logo" alt="Lidl logo" />
+        </a> 
+        <Cart />    
     </header>
 </template>
+
+<script lang="ts" setup>
+import Cart from '../Cart/Cart.vue'
+
+</script>
 
 <style lang="scss">
 .header {
@@ -27,11 +30,6 @@
         width: 5vw;
         padding: 0.5em;
         min-width: 50px;
-    }
-
-    &--cart {
-        width: 30px;
-        margin-right: 1vw;
     }
 }
 </style>
